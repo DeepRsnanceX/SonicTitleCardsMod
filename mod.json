@@ -1,0 +1,25 @@
+{
+	"geode": "4.1.1",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"resources": {
+		"sprites": [
+			"resources/titleSquare.png"
+		],
+		"fonts": {
+			"sonic3Font": {
+				"path": "resources/font/Andes.ttf",
+				"size": 190
+			}
+		}
+	},
+	"id": "saritahhh.sonic_title_cards",
+	"name": "Sonic Title Cards",
+	"version": "v1.0.0-beta.1",
+	"developer": "Saritahhh",
+	"description": "Implements the Title Cards from classic sonic games onto GD!"
+}

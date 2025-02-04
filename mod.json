@@ -1,5 +1,5 @@
 {
-	"geode": "4.1.1",
+	"geode": "4.2.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -8,18 +8,42 @@
 	},
 	"resources": {
 		"sprites": [
-			"resources/titleSquare.png"
+			"resources/*.png"
 		],
-		"fonts": {
-			"sonic3Font": {
-				"path": "resources/font/Andes.ttf",
-				"size": 190
-			}
+		"files": [
+			"resources/prefonts/hq/*.png",
+			"resources/prefonts/hq/*.fnt",
+			"resources/prefonts/og/*.png",
+			"resources/prefonts/og/*.fnt"
+		]
+	},
+	"settings": {
+		"game-card":{
+			"type": "string",
+			"name": "Game Card",
+			"description": "Which Sonic game's title card you want to use.",
+			"default": "sonic1",
+			"one-of": ["sonic1", "sonic2", "sonic3"]
+		},
+		"quality-type":{
+			"type": "string",
+			"name": "Title Card Quality",
+			"description": "Decides the style of the Title Card Sprites to use \n\n OG - Original, pixelated sprites \n\n HQ - High Quality, redrawn sprites",
+			"default": "og",
+			"one-of": ["og", "hq"]
+		},
+		"stay-time":{
+			"type": "float",
+			"name": "Stay Time",
+			"description": "How long the Title Card should stay on screen (in seconds).",
+			"default": 1.25,
+			"min": 0.1,
+			"max": 10
 		}
 	},
 	"id": "saritahhh.sonic_title_cards",
 	"name": "Sonic Title Cards",
 	"version": "v1.0.0-beta.1",
 	"developer": "Saritahhh",
-	"description": "Implements the Title Cards from classic sonic games onto GD!"
+	"description": "Adds Title Cards from Sonic games to GD!"
 }

@@ -18,8 +18,8 @@ zone end     = {405.0f, 145.0f}
 # SONIC 2 POSITIONS: TODO
 main square start   = {-300.0f, 158.0f}
 main square end     = {40.0f, 158.0f}
-bottom square start = {1300.0f, 20.0f}
-bottom square end   = {570.0f, 20.0f}
+bottom square start = {1300.0f, 20.0f} NEW: {1440.0f, 20.0f} 
+bottom square end   = {570.0f, 20.0f} NEW: {645.0f, 20.0f}
 lvl start           = {1200.0f, 235.0f}
 lvl end             = {545.0f, 235.0f}
 zone start          = {-300.0f, 190.0f}

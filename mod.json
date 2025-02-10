@@ -39,6 +39,12 @@
 			"default": 1.25,
 			"min": 0.1,
 			"max": 10
+		},
+		"trim-zone":{
+			"type":"bool",
+			"name":"Trim Zone",
+			"description": "If enabled, removes 'zone' from level name if it contains it. (e.g. 'Green Hill Zone' -> 'Green Hill')",
+			"default": true
 		}
 	},
 	"id": "saritahhh.sonic_title_cards",

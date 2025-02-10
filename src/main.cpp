@@ -7,6 +7,7 @@ using namespace geode::prelude;
 auto chosenGame = Mod::get()->getSettingValue<std::string>("game-card");
 auto spriteQuality = Mod::get()->getSettingValue<std::string>("quality-type");
 auto stayTime = Mod::get()->getSettingValue<double>("stay-time");
+auto trimZoneText = Mod::get()->getSettingValue<bool>("trim-zone");
 
 $on_mod(Loaded){
     listenForSettingChanges("game-card", [](std::string value) {
@@ -17,6 +18,9 @@ $on_mod(Loaded){
     });
     listenForSettingChanges("stay-time", [](double value) {
         stayTime = value;
+    });
+    listenForSettingChanges("trim-zone", [](bool value) {
+        trimZoneText = value;
     });
 }
 
@@ -35,8 +39,8 @@ class $modify(PlayLayer) {
             auto bottomSquareToUse = fmt::format("sonic2_titleSquareBottom_{}.png"_spr, spriteQuality);
             auto bottomSquare = CCSprite::create(bottomSquareToUse.c_str());
             bottomSquare->setID("sonic-title-square-bottom");
-            bottomSquare->setZOrder(50);
-            bottomSquare->setPosition({1300.0f, 20.0f});
+            bottomSquare->setZOrder(49);
+            bottomSquare->setPosition({1440.0f, 20.0f});
             bottomSquare->setAnchorPoint({1.0f, 0.5f});
             this->addChild(bottomSquare);
         }
@@ -49,16 +53,34 @@ class $modify(PlayLayer) {
         if (chosenGame == "sonic1" || chosenGame == "sonic2") {
             std::transform(levelNameResult.begin(), levelNameResult.end(), levelNameResult.begin(), ::toupper);
             zoneText = "ZONE";
+            if (trimZoneText) {
+                std::string::size_type pos = levelNameResult.find("ZONE");
+                if (pos != std::string::npos) {
+                    levelNameResult.erase(pos, 4);
+                }
+            }
         }
         
-        // convert level name to lowercase (if sonic 3)
+        // convert level name for sonic 3 modes
         if (chosenGame == "sonic3") {
             if (spriteQuality == "og") {
                 std::transform(levelNameResult.begin(), levelNameResult.end(), levelNameResult.begin(), ::toupper);
                 zoneText = "ZONE";
+                if (trimZoneText) {
+                    std::string::size_type pos = levelNameResult.find("ZONE");
+                    if (pos != std::string::npos) {
+                        levelNameResult.erase(pos, 4);
+                    }
+                }
             } else if (spriteQuality == "hq"){
                 std::transform(levelNameResult.begin(), levelNameResult.end(), levelNameResult.begin(), ::tolower);
                 zoneText = "zone";
+                if (trimZoneText) {
+                    std::string::size_type pos = levelNameResult.find("zone");
+                    if (pos != std::string::npos) {
+                        levelNameResult.erase(pos, 4);
+                    }
+                }
             }
         }
 
@@ -181,9 +203,9 @@ class $modify(PlayLayer) {
         // Sonic 2: TODO
         float sonic2Delay = stayTime + 0.65f;
         auto sonic2_bottomSquareMovements = CCSequence::create(
-            CCMoveTo::create(0.25f, {570.0f, 20.0f}),
+            CCMoveTo::create(0.25f, {645.0f, 20.0f}),
             CCDelayTime::create(stayTime),
-            CCMoveTo::create(0.25f, {1300.0f, 20.0f}),
+            CCMoveTo::create(0.25f, {1440.0f, 20.0f}),
             nullptr
         );
         auto sonic2_mainSquareMovements = CCSequence::create(
